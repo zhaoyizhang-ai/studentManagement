@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>学习任务管理</title>
+  <link rel="stylesheet" href="styles/main.css" />
+  <link rel="stylesheet" href="styles/layout.css" />
+  <link rel="stylesheet" href="styles/components.css" />
+  <link rel="stylesheet" href="styles/views/overview.css" />
+  <link rel="stylesheet" href="styles/views/matrix.css" />
+  <link rel="stylesheet" href="styles/views/calendar.css" />
+  <link rel="stylesheet" href="styles/views/stats.css" />
+  <link rel="stylesheet" href="styles/views/category.css" />
+</head>
+<body>
+  <div class="app-layout">
+    <aside class="sidebar" id="sidebar"></aside>
+    <main class="main-content">
+      <header class="topbar">
+        <h1 class="topbar__title" id="viewTitle"></h1>
+        <div class="topbar__actions">
+          <input type="search" class="search-input" id="searchInput" placeholder="搜索任务..." />
+          <button class="btn btn--primary" id="addTaskBtn">+ 新建任务</button>
+        </div>
+      </header>
+      <div class="view-container" id="viewContainer"></div>
+    </main>
+  </div>
+  <div class="modal-overlay" id="taskModalOverlay" hidden>
+    <div class="modal" id="taskModal" role="dialog" aria-modal="true">
+      <div class="modal__header">
+        <h2 class="modal__title" id="taskModalTitle">新建任务</h2>
+        <button class="modal__close" id="taskModalClose" aria-label="关闭弹窗">&times;</button>
+      </div>
+      <form class="modal__body" id="taskForm" novalidate>
+        <div class="form-group">
+          <label for="fTitle">标题 <span class="required">*</span></label>
+          <input type="text" id="fTitle" maxlength="100" placeholder="输入任务标题" />
+          <span class="field-error" id="fTitleError"></span>
+        </div>
+        <div class="form-group">
+          <label for="fDesc">描述</label>
+          <textarea id="fDesc" rows="3" placeholder="详细描述（可选）"></textarea>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fCategory">分类</label>
+            <select id="fCategory"></select>
+          </div>
+          <div class="form-group">
+            <label for="fPriority">优先级</label>
+            <select id="fPriority">
+              <option value="high">高</option>
+              <option value="medium" selected>中</option>
+              <option value="low">低</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fStatus">状态</label>
+            <select id="fStatus">
+              <option value="todo">待办</option>
+              <option value="in-progress">进行中</option>
+              <option value="done">已完成</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="fDueDate">截止日期</label>
+            <input type="date" id="fDueDate" />
+          </div>
+        </div>
+        <div class="form-row form-row--checkboxes">
+          <label class="checkbox-label">
+            <input type="checkbox" id="fImportant" />
+            重要
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" id="fUrgent" />
+            紧迫
+          </label>
+        </div>
+        <div class="modal__footer">
+          <button type="button" class="btn btn--danger" id="taskDeleteBtn" hidden>删除</button>
+          <div class="modal__footer-right">
+            <button type="button" class="btn" id="taskCancelBtn">取消</button>
+            <button type="submit" class="btn btn--primary" id="taskSaveBtn">保存</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="modal-overlay" id="catModalOverlay" hidden>
+    <div class="modal modal--small" id="catModal">
+      <div class="modal__header">
+        <h2 class="modal__title">分类管理</h2>
+        <button class="modal__close" id="catModalClose">&times;</button>
+      </div>
+      <div class="modal__body" id="catManagerBody"></div>
+    </div>
+  </div>
+  <script type="module" src="scripts/app.js"></script>
+</body>
+</html>

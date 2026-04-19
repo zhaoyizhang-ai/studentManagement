@@ -1,0 +1,92 @@
+.calendar-wrapper { max-width: 900px; }
+
+.calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.calendar-month { font-size: 1.1rem; font-weight: 700; }
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.calendar-day-header {
+  text-align: center;
+  font-size: .75rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  padding: 8px 0;
+}
+
+.calendar-day {
+  min-height: 80px;
+  border-radius: var(--radius-sm);
+  padding: 8px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  cursor: pointer;
+  transition: box-shadow var(--transition);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.calendar-day:hover { box-shadow: var(--shadow-md); }
+.calendar-day--empty { background: transparent; border-color: transparent; cursor: default; }
+.calendar-day--today {
+  border-color: var(--color-primary);
+  background: var(--color-primary-light);
+}
+.calendar-day--today .calendar-day__num { color: var(--color-primary); font-weight: 700; }
+.calendar-day--overdue { border-color: var(--color-danger); }
+
+.calendar-day__num { font-size: .85rem; font-weight: 600; }
+
+.calendar-day__dots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+}
+
+.calendar-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.calendar-dot.done { opacity: .35; }
+
+.calendar-day-detail {
+  margin-top: 20px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  box-shadow: var(--shadow-sm);
+}
+
+.cal-detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.cal-detail-list { display: flex; flex-direction: column; gap: 10px; }
+
+.cal-detail-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  padding: 6px 8px;
+  border-radius: var(--radius-sm);
+  transition: background var(--transition);
+}
+.cal-detail-item:hover { background: var(--color-bg); }
+.cal-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.done-text { text-decoration: line-through; color: var(--color-text-muted); }
